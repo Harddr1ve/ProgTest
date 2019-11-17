@@ -39,11 +39,21 @@ void Menu::mainMenu()
 void Menu::createCustomObject()
 {
 	int var = 0;
-	std::cout << "New object created" << endl << "Select action" << endl << "1. Removei object" << endl 
+	Country* defaultCountry = new Country();
+	std::cout << "New object created" << endl << "Select action" << endl << "1. Remove object" << endl 
 		<< "2. Change object" << endl << "3. Print object" << endl << "4. Return to menu" << endl;
 	std::cin >> var;
 	switch (var)
 	{
+	case 1: {
+		defaultCountry->~Country();
+		break;
+	}
+	case 3: {
+		system("cls");
+		std::cout << defaultCountry->getCountryName() << "  " << defaultCountry->getCountryPeopleCount() << "  " << defaultCountry->getCountryValue();
+		break;
+	}
 	case 4: {
 		mainMenu();
 		break;
@@ -51,7 +61,6 @@ void Menu::createCustomObject()
 	default:
 		break;
 	}
-	mainMenu();
 }
 
 void Menu::removeObject()

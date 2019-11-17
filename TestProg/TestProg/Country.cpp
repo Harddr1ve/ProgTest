@@ -10,6 +10,21 @@ Country::~Country() {
 	std::cout << "Object deleted sucsess" << endl;
 }
 
+void Country::setCountryName(string m_countryName)
+{
+	countryName = m_countryName;
+}
+
+void Country::setCountryValue(float m_ountryValue)
+{
+	countryValue = m_ountryValue;
+}
+
+void Country::setCountryPeopleCount(int m_countryPeopleCount)
+{
+	countryPeopleCount = m_countryPeopleCount;
+}
+
 string Country::getCountryName()
 {
 	return countryName;

@@ -21,7 +21,7 @@ void Menu::mainMenu()
 	case 1: {
 		system("cls");
 		std::cout << "Creating default custom object" << endl;
-		createCustomObject();
+		createDefaultObject();
 		break;
 	}
 	case 2: {
@@ -36,31 +36,89 @@ void Menu::mainMenu()
 	}
 }
 
-void Menu::createCustomObject()
+void Menu::createDefaultObject()
 {
 	int var = 0;
+	bool repeat = true;
 	Country* defaultCountry = new Country();
-	std::cout << "New object created" << endl << "Select action" << endl << "1. Remove object" << endl 
-		<< "2. Change object" << endl << "3. Print object" << endl << "4. Return to menu" << endl;
-	std::cin >> var;
-	switch (var)
+	std::cout << "New object created" << endl;
+	while (repeat)
 	{
-	case 1: {
-		defaultCountry->~Country();
-		break;
+		std::cout << "Select action" << endl << "1. Remove object" << endl
+			<< "2. Change object" << endl << "3. Print object" << endl << "4. Return to menu" << endl;
+		std::cin >> var;
+
+		switch (var)
+		{
+		case 1: {
+			defaultCountry->~Country();
+			break;
+		}
+		case 2: {
+			changeDefaultObject(defaultCountry);
+		}
+		case 3: {
+			system("cls");
+			std::cout << defaultCountry->getCountryName() << "  " << defaultCountry->getCountryPeopleCount() << "  " << defaultCountry->getCountryValue();
+			break;
+		}
+		case 4: {
+			mainMenu();
+			break;
+		}
+		default:
+			break;
+		}
 	}
-	case 3: {
+
+}
+
+void Menu::changeDefaultObject(Country* object)
+{
+	bool repeat = true;
+	int action = 0, peopleCount;
+	string name;
+	float value;
+	while (repeat)
+	{
 		system("cls");
-		std::cout << defaultCountry->getCountryName() << "  " << defaultCountry->getCountryPeopleCount() << "  " << defaultCountry->getCountryValue();
-		break;
+		std::cout << "Select action" << endl << "1. Change Name" << endl << "2. Change People count" << endl
+			<< "3. Change Value" << endl << "4. Return" << endl;
+		std::cin >> action;
+
+		switch (action)
+		{
+		case 1: {
+			std::cout << "Current Name" << object->getCountryName() << endl << "Enter new Name" << endl;
+			std::cin >> name;
+			object->setCountryName(name);
+			break;
+		}
+		case 2: {
+			std::cout << "Current People Count" << object->getCountryPeopleCount() << endl << "Enter new People Count" << endl;
+			std::cin >> peopleCount;
+			object->setCountryPeopleCount(peopleCount);
+			break;
+		}
+		case 3: {
+			std::cout << "Current Value" << object->getCountryValue() << endl << "Enter new Value" << endl;
+			std::cin >> value;
+			object->setCountryValue(value);
+			break;
+		}
+		case 4: {
+			repeat = false;
+			break;
+		}
+		default:
+			break;
+		}
 	}
-	case 4: {
-		mainMenu();
-		break;
-	}
-	default:
-		break;
-	}
+}
+
+void Menu::createCustomObject()
+{
+
 }
 
 void Menu::removeObject()

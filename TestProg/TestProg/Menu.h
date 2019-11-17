@@ -13,6 +13,7 @@ public:
 
 	void mainMenu();
 	void createDefaultObject();
+	void changeDefaultObject(Country* object);
 	void createCustomObject();
 	void removeObject();
 

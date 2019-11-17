@@ -14,8 +14,9 @@ public:
 	void mainMenu();
 	void createDefaultObject();
 	void changeDefaultObject(Country* object);
-	void createCustomObject();
+	void createCustomObject(int val);
 	void removeObject();
+	void printObject(Country* object);
 
 };
 

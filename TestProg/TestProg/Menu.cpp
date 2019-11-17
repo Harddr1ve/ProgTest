@@ -13,7 +13,7 @@ void Menu::mainMenu()
 	int var = 0;
 	system("cls");
 	std::cout << "Menu" << endl << "Select action" << endl << "1. Create new defaut Country Object" << endl
-		<< "2. Remove default Country Object" << endl << "3. Print default Contry Object" << endl
+		<< "2. Create custom Country Object" << endl << "3. Print default Contry Object" << endl
 		<< "4. Change default Country Object" << endl << "5. Exit" << endl;
 	std::cin >> var;
 	switch (var)
@@ -25,7 +25,14 @@ void Menu::mainMenu()
 		break;
 	}
 	case 2: {
-		std::cout << "Some SHIT";
+		int val = 0;
+		system("cls");
+		std::cout << "How many objects you want" << endl;
+		std::cin >> val;
+		createCustomObject(val);
+		break;
+	}
+	case 3: {
 		break;
 	}
 	case 5: {
@@ -63,6 +70,7 @@ void Menu::createDefaultObject()
 			break;
 		}
 		case 4: {
+			defaultCountry->~Country();
 			mainMenu();
 			break;
 		}
@@ -116,11 +124,59 @@ void Menu::changeDefaultObject(Country* object)
 	}
 }
 
-void Menu::createCustomObject()
+void Menu::createCustomObject(int val)
 {
-
+	char sw;
+	bool again = true;
+	system("cls");
+	std::cout << "How many objects create\n";
+	Country* arr = new Country[val];
+	for (size_t i = 0; i < val; i++)
+	{
+		printObject(&arr[i]);
+	}
+	while (again)
+	{
+		std::cout << "\nDo you want\n1. Delete Objects\n2. Customize Objects\n3. Print Objects\n";
+		std::cin >> sw;
+		if (sw == 'a')
+		{
+			delete[]arr;
+			mainMenu();
+		}
+		else if (sw == 'b')
+		{
+			system("cls");
+			int a = 0;
+			float countryValue = 0;
+			std::cout << "\nNuber of Object\n";
+			std::cin >> a;
+			std::cout << "Current Value\n" << arr[a].getCountryValue() << "\nEnter New Value\n";
+			std::cin >> countryValue;
+			arr[a].setCountryValue(countryValue);
+		}
+		else if (sw == 'c')
+		{
+			system("cls");
+			for (size_t i = 0; i < val; i++)
+			{
+				std::cout << "Number of Object " << i << endl;
+				printObject(&arr[i]);
+			}
+		}
+		else if (sw == 'd')
+		{
+			again = false;
+			mainMenu();
+		}
+	}
 }
 
 void Menu::removeObject()
 {
+}
+
+void Menu::printObject(Country* object)
+{
+	std::cout << object->getCountryName() << "  " << object->getCountryPeopleCount() << "  " << object->getCountryValue() << endl;
 }

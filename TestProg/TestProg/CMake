@@ -1,0 +1,4 @@
+cmake_minimum_required( VERSION 2.8 )
+set( RESOURCES
+     ${CMAKE_CURRENT_SOURCE_DIR}
+)

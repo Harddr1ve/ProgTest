@@ -13,8 +13,9 @@ void Menu::mainMenu()
 	int var = 0;
 	system("cls");
 	std::cout << "Menu" << endl << "Select action" << endl << "1. Create new defaut Country Object" << endl
-		<< "2. Create custom Country Object" << endl << "3. Print default Contry Object" << endl
-		<< "4. Change default Country Object" << endl << "5. Exit" << endl;
+		<< "2. Create custom Country Object" << endl << "3. Print all Objects" << endl
+		<< "4. Change default Country Object" << endl << "5. Create object with custom constructor " << endl
+		<< "6. Exit" << endl;
 	std::cin >> var;
 	switch (var)
 	{
@@ -25,17 +26,38 @@ void Menu::mainMenu()
 		break;
 	}
 	case 2: {
-		int val = 0;
 		system("cls");
-		std::cout << "How many objects you want" << endl;
-		std::cin >> val;
-		createCustomObject(val);
+		std::cout << " Please ener 4 new objects" << endl;
+		createCustomObject();
 		break;
 	}
 	case 3: {
+		printObject(defaultCountry);
+		for (size_t i = 0; i < 4; i++)
+		{
+			std::cout << "Number of Object " << i << endl;
+			printObject(&customObjectsArray[i]);
+		}
 		break;
 	}
 	case 5: {
+		string countryName;
+		float countryValue;
+		int countryPeopleCount;
+
+		std::cout << endl << "Enter Country Name" << endl;
+		std::cin >> countryName;
+		std::cout << endl << "Enter Country Value" << endl;
+		std::cin >> countryValue;
+		std::cout << endl << "Enter Country PeopleCount" << endl;
+		std::cin >> countryPeopleCount;
+		Country tmp(countryName, countryValue, countryPeopleCount);
+		customConstructObj = &tmp;
+		printObject(customConstructObj);
+		break;
+	}
+	case 6:
+	{
 		break;
 	}
 	default:
@@ -47,7 +69,6 @@ void Menu::createDefaultObject()
 {
 	int var = 0;
 	bool repeat = true;
-	Country* defaultCountry = new Country();
 	std::cout << "New object created" << endl;
 	while (repeat)
 	{
@@ -70,9 +91,8 @@ void Menu::createDefaultObject()
 			break;
 		}
 		case 4: {
-			defaultCountry->~Country();
+			repeat = false;
 			mainMenu();
-			break;
 		}
 		default:
 			break;
@@ -124,56 +144,59 @@ void Menu::changeDefaultObject(Country* object)
 	}
 }
 
-void Menu::createCustomObject(int val)
+void Menu::createCustomObject()
 {
-	char sw;
+	int sw;
 	bool again = true;
 	system("cls");
-	std::cout << "How many objects create\n";
-	Country* arr = new Country[val];
-	for (size_t i = 0; i < val; i++)
+	
+	for (size_t i = 0; i < 4; i++)
 	{
-		printObject(&arr[i]);
+		printObject(&customObjectsArray[i]);
 	}
 	while (again)
 	{
-		std::cout << "\nDo you want\n1. Delete Objects\n2. Customize Objects\n3. Print Objects\n";
+		std::cout << "\nDo you want\n1. Delete Objects\n2. Customize Objects\n3. Print Objects\n4.Return";
 		std::cin >> sw;
-		if (sw == 'a')
+		switch (sw)
 		{
-			delete[]arr;
+		case 1: {
+			delete[]customObjectsArray;
 			mainMenu();
+			break;
 		}
-		else if (sw == 'b')
-		{
+
+		case 2:	{
 			system("cls");
 			int a = 0;
 			float countryValue = 0;
 			std::cout << "\nNuber of Object\n";
 			std::cin >> a;
-			std::cout << "Current Value\n" << arr[a].getCountryValue() << "\nEnter New Value\n";
-			std::cin >> countryValue;
-			arr[a].setCountryValue(countryValue);
+			changeDefaultObject(&customConstructObj[a]);
+			break;
 		}
-		else if (sw == 'c')
+
+		case 3:
 		{
 			system("cls");
-			for (size_t i = 0; i < val; i++)
+			for (size_t i = 0; i < 4; i++)
 			{
 				std::cout << "Number of Object " << i << endl;
-				printObject(&arr[i]);
+				printObject(&customObjectsArray[i]);
 			}
+			break;
 		}
-		else if (sw == 'd')
-		{
+
+		case 4:{
 			again = false;
 			mainMenu();
+			break;
+		}
+
+		default:
+			break;
 		}
 	}
-}
-
-void Menu::removeObject()
-{
 }
 
 void Menu::printObject(Country* object)

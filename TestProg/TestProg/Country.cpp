@@ -1,10 +1,19 @@
 #include "Country.h"
 
-Country::Country() {
+Country::Country()
+{
 	countryName = "Default Name";
 	countryValue = 0, 1;
 	countryPeopleCount = 0;
 }
+
+Country::Country(string m_countryName, float m_countryValue, int m_countryPeopleCount)
+{
+	countryName = m_countryName;
+	countryValue = m_countryValue;
+	countryPeopleCount = m_countryPeopleCount;
+}
+
 
 Country::~Country() {
 	std::cout << "Object deleted sucsess" << endl;

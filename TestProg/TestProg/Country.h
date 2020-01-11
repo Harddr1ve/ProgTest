@@ -8,6 +8,7 @@ class Country
 public:
 
 	Country();
+	Country(string m_countryName, float m_countryValue, int m_countryPeopleCount);
 	~Country();
 
 	// Setters

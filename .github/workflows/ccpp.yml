@@ -15,12 +15,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: dist
       run: ls -al
-    - name: enter
-      run: cd TestProg/
-    - name: enter
-      run: cd TestProg/
-    - name: enter
-      run: ls -al
-    - name: build 
-      run: g++ -g $(find RootFolderName -type f -iregex ".\*.cpp") -o OutputName
+      run: g++ -g $(find RootFolderName -type f -iregex "TestProg/TestProg/*.cpp") -o OutputName
       

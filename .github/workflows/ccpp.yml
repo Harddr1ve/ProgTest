@@ -15,7 +15,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: dist
       run: ls -al
-    - name: dir
-      run: mkdir out
     - name: build
       run: g++ -o out -I TestProg/TestProg/*.cpp

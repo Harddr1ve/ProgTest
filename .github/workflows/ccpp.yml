@@ -16,4 +16,5 @@ jobs:
     - name: dist
       run: ls -al
     - name: build
-      run: g++ -o out TestProg/TestProg/main.cpp
+      run: g++ -o out TestProg/TestProg/main.cpp -fpermissive
+      

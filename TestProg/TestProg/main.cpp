@@ -1,13 +1,9 @@
 #include <iostream>
 
-#include "Menu.h"
-#include "Country.h"
 
 int main(void)
 {
-	string bigCountry;
-	float tmp, tmp2;
-	float tmpCount;
-
+	std::cout << "Hello World";
+	std::cout << main;
 	return 0;
 }

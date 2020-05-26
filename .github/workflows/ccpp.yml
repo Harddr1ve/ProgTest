@@ -16,6 +16,9 @@ jobs:
     - name: dist
       run: ls -al
     - name: build 
-      run: cd TestProg/TestProg/ 
+      run: cd TestProg/
+           ls
+           cd TestProg/
+           ls 
            g++ -g $(find RootFolderName -type f -iregex ".\*.cpp") -o OutputName
       
